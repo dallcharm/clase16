@@ -24,9 +24,20 @@ function searchHandler(request,response){
 }
 
 
-app.use('/static',express.static('static'))
-//app.use(myFirstMiddleware)
+//app.use('/static',express.static('static'))
+
+function authenticacionHandler(request,response){
+    console.log(request.body)
+    response.send("Auth")
+}
+
+app.use(express.json())
+app.post('/auth',authenticacionHandler)
+
+
+
 app.all('/',rootHandler)
+
 app.get('/search',searchHandler)
 app.listen(9000)
 
